@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30 Hari Membaca | Ruang Tumbuh & Kebiasaan Membaca</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f59e0b;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-amber-100 via-amber-50/40 to-white dark:from-slate-950 dark:via-zinc-900 dark:to-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col selection:bg-amber-300 selection:text-amber-950">
+
+    <!-- POPUP SELAMAT DATANG -->
+    <div id="welcomeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-white dark:bg-zinc-900 border border-amber-200 dark:border-zinc-800 rounded-3xl p-6 md:p-8 max-w-md w-full shadow-2xl relative transform transition-all scale-100 text-center">
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-zinc-800 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div class="w-16 h-16 bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <span class="inline-block px-3 py-1 bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 text-xs font-semibold rounded-full mb-3">Selamat Datang Teman Membaca!</span>
+            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Halo dari 30 Hari Membaca</h3>
+            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+                Senang banget kamu mampir ke sini! Di sini kita saling menyemangati untuk membangun kebiasaan membaca tanpa tekanan. Yuk gabung atau intip dulu perjalanan kami.
+            </p>
+            <div class="flex flex-col gap-2.5">
+                <a href="https://bit.ly/JoinC30HM" target="_blank" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 px-5 rounded-2xl shadow-lg shadow-amber-500/20 transition-all text-center flex items-center justify-center gap-2">
+                    <span>Ayo Join Sekarang</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+                <button id="exploreBtn" class="w-full bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 text-slate-700 dark:text-slate-200 font-semibold py-2.5 px-5 rounded-2xl transition">
+                    Lihat-lihat Dulu
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR HEADER -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-white/70 dark:bg-zinc-900/70 border-b border-amber-200/50 dark:border-zinc-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center text-slate-950 font-black text-xl shadow-md group-hover:scale-105 transition-transform">
+                    30
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-extrabold text-slate-900 dark:text-white tracking-tight text-lg leading-tight">30 Hari Membaca</span>
+                    <span class="text-xs text-amber-700 dark:text-amber-400 font-medium">@30harimembaca</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Items -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                <a href="#tentang" class="hover:text-amber-600 dark:hover:text-amber-400 transition">Tentang Kami</a>
+                <a href="#event" class="hover:text-amber-600 dark:hover:text-amber-400 transition">Kegiatan Seru</a>
+                <a href="#titik-kumpul" class="hover:text-amber-600 dark:hover:text-amber-400 transition">Titik Kumpul</a>
+                <a href="#karya" class="hover:text-amber-600 dark:hover:text-amber-400 transition">Buku & Karya</a>
+                <a href="#divisi" class="hover:text-amber-600 dark:hover:text-amber-400 transition">Tim Divisi</a>
+                <a href="#zine" class="hover:text-amber-600 dark:hover:text-amber-400 transition">Digital Zine</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <!-- Dark Mode Toggle Button -->
+                <button id="themeToggleBtn" aria-label="Toggle Dark Mode" class="p-2.5 rounded-2xl bg-amber-100/80 dark:bg-zinc-800 text-amber-900 dark:text-amber-300 hover:bg-amber-200 dark:hover:bg-zinc-700 transition">
+                    <!-- Sun Icon -->
+                    <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <!-- Moon Icon -->
+                    <svg id="moonIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                </button>
+
+                <!-- Primary CTA Join Button -->
+                <a href="https://bit.ly/JoinC30HM" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-slate-900 hover:bg-amber-600 dark:bg-amber-500 dark:hover:bg-amber-400 text-white dark:text-slate-950 px-5 py-2.5 rounded-2xl font-bold text-sm shadow-md transition-all">
+                    <span>Ayo Join</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" aria-label="Open Navigation Menu" class="lg:hidden p-2.5 rounded-2xl bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-slate-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden border-b border-amber-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md px-6 py-4 flex flex-col gap-4 text-base font-semibold">
+            <a href="#tentang" class="mobile-nav-link text-slate-700 dark:text-slate-200">Tentang Kami</a>
+            <a href="#event" class="mobile-nav-link text-slate-700 dark:text-slate-200">Kegiatan Seru</a>
+            <a href="#titik-kumpul" class="mobile-nav-link text-slate-700 dark:text-slate-200">Titik Kumpul</a>
+            <a href="#karya" class="mobile-nav-link text-slate-700 dark:text-slate-200">Buku & Karya</a>
+            <a href="#divisi" class="mobile-nav-link text-slate-700 dark:text-slate-200">Tim Divisi</a>
+            <a href="#zine" class="mobile-nav-link text-slate-700 dark:text-slate-200">Digital Zine</a>
+            <div class="pt-2 border-t border-slate-100 dark:border-zinc-800">
+                <a href="https://bit.ly/JoinC30HM" target="_blank" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 rounded-2xl shadow flex items-center justify-center gap-2">
+                    <span>Gabung Sekarang</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- HERO SECTION -->
+        <section class="relative pt-12 pb-16 md:pt-20 md:pb-28 overflow-hidden fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+                            Mulai Kebiasaan Membaca, <br class="hidden sm:inline"/>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-500 dark:from-amber-400 dark:to-yellow-300">Nikmati Setiap Halamannya.</span>
+                        </h1>
+
+                        <p class="text-slate-600 dark:text-slate-300 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                            Penasaran ingin konsisten baca buku tanpa merasa sendirian? Di komunitas <span class="font-semibold text-slate-800 dark:text-amber-300">@30harimembaca</span>, kita tumbuh bareng lewat rutinitas membaca harian, kumpul thread hobi, hingga menerbitkan karya tulisan sendiri.
+                        </p>
+
+                        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                            <a href="https://bit.ly/JoinC30HM" target="_blank" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 px-8 py-4 rounded-2xl font-extrabold text-base shadow-xl shadow-amber-500/25 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-3">
+                                <span>Penasaran? Ayo Join Sekarang!</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </a>
+
+                            <button id="openBookletBtn" class="w-full sm:w-auto bg-white/80 dark:bg-zinc-800 hover:bg-slate-100 dark:hover:bg-zinc-700 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-zinc-700 px-6 py-4 rounded-2xl font-bold text-base transition flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                <span>Detail Booklet Komunitas</span>
+                            </button>
+                        </div>
+
+                        <!-- Stats Badge -->
+                        <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-200/80 dark:border-zinc-800/80 max-w-lg mx-auto lg:mx-0">
+                            <div>
+                                <div class="text-2xl font-extrabold text-slate-900 dark:text-white">4+</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kota Titik Kumpul</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-extrabold text-slate-900 dark:text-white">3+</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Buku Karya PABOBA</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-extrabold text-slate-900 dark:text-white">1000+</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Teman Membaca</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Column Interactive Graphic Card -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-amber-300/40 rounded-full blur-2xl pointer-events-none"></div>
+                        <div class="bg-white/80 dark:bg-zinc-900/90 backdrop-blur-lg border border-amber-200 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative">
+                            <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-zinc-800">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                </div>
+                                <span class="text-xs font-mono text-slate-400">@30harimembaca_journal</span>
+                            </div>
+
+                            <div class="mt-6 space-y-4">
+                                <div class="p-4 rounded-2xl bg-amber-50 dark:bg-zinc-800/60 border border-amber-100 dark:border-zinc-700">
+                                    <div class="flex items-center justify-between text-xs font-semibold text-amber-800 dark:text-amber-300 mb-1">
+                                        <span>Rencana Rutinitas Membaca</span>
+                                        <span>Hari ke-18 / 30</span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 dark:bg-zinc-700 h-2.5 rounded-full overflow-hidden">
+                                        <div class="bg-amber-500 h-full rounded-full w-[60%]"></div>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-zinc-800/40 border border-slate-100 dark:border-zinc-800 flex items-start gap-3">
+                                    <div class="p-2 bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 rounded-xl">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-sm font-bold text-slate-800 dark:text-slate-100">Bukan Soal Siapa Paling Cepat</h2>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Membaca itu perjalanan pribadi. 15 menit sehari jauh lebih berarti daripada tidak sama sekali.</p>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 font-semibold text-xs flex items-center justify-between shadow-md">
+                                    <span>Gabung Thread Titik Kumpul Terdekat!</span>
+                                    <span class="px-2.5 py-1 bg-slate-950 text-white rounded-lg text-[10px]">Jakarta • Solo • Jogja • Makassar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="tentang" class="py-16 md:py-24 bg-white/60 dark:bg-zinc-900/40 backdrop-blur-sm border-y border-amber-200/40 dark:border-zinc-800/60 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center space-y-4">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-950/80 px-3.5 py-1.5 rounded-full">Tentang Komunitas</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+                        Siapa Sih Komunitas 30 Hari Membaca?
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
+                        Kami adalah wadah hangat buat siapa saja yang mau meluangkan waktu sejenak untuk membaca di tengah hiruk-pikuk harian. Tidak ada istilah salah baca buku, tidak ada patokan jumlah lembar. Semua dilakukan dengan cara yang menyenangkan, saling mengapresiasi, dan bikin betah.
+                    </p>
+                </div>
+
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-3xl bg-amber-50/60 dark:bg-zinc-800/40 border border-amber-100 dark:border-zinc-800 space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-200 dark:bg-amber-900/50 text-amber-800 dark:text-amber-300 flex items-center justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Bangun Kebiasaan</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Mulai dari yang kecil. Cukup luangkan beberapa menit sehari selama 30 hari untuk membentuk rutinitas yang membahagiakan.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-amber-50/60 dark:bg-zinc-800/40 border border-amber-100 dark:border-zinc-800 space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-200 dark:bg-amber-900/50 text-amber-800 dark:text-amber-300 flex items-center justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Keluarga & Relasi</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Bukan cuma baca sendiri, kamu bakal punya teman diskusi yang saling mendukung dari berbagai kota di Indonesia.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-amber-50/60 dark:bg-zinc-800/40 border border-amber-100 dark:border-zinc-800 space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-200 dark:bg-amber-900/50 text-amber-800 dark:text-amber-300 flex items-center justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Salurkan Karya (PABOBA)</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Membaca berujung berkarya! Anggota aktif berkesempatan menulis dan menerbitkan buku antologi bersama tim PABOBA.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENT & KEGIATAN SERU SECTION -->
+        <section id="event" class="py-16 md:py-24 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center space-y-3 mb-12">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-950/80 px-3.5 py-1.5 rounded-full">Aktivitas Komunitas</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Kegiatan Seru yang Bisa Kamu Ikuti</h2>
+                    <p class="text-slate-600 dark:text-slate-300 max-w-xl mx-auto text-sm sm:text-base">
+                        Biar membacamu makin berwarna, kita punya berbagai agenda rutin yang seru dan berhadiah menarik!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Event 1 -->
+                    <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl p-6 shadow-sm hover:shadow-lg transition-all space-y-4 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center font-bold text-lg mb-4">
+                                01
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Gerbang PABOBA</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                                Program khusus Pejuang Alur Baca & Olah Buku Abadi. Tempat belajar menulis, membedah naskah, hingga berhasil menerbitkan buku bersama.
+                            </p>
+                        </div>
+                        <span class="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                            <span>Program Menulis</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl p-6 shadow-sm hover:shadow-lg transition-all space-y-4 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center font-bold text-lg mb-4">
+                                02
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Diskusi Lentera</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                                Sesi obrolan hangat online mau pun offline untuk berbagi sudut pandang seputar buku favorit, isu hangat, dan isu literasi harian.
+                            </p>
+                        </div>
+                        <span class="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                            <span>Diskusi Interaktif</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl p-6 shadow-sm hover:shadow-lg transition-all space-y-4 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center font-bold text-lg mb-4">
+                                03
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Mini Games</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                                Permainan ringan di grup WhatsApp / Thread seperti tebak kutipan, tantangan membaca 15 menit, dan kuis literasi interaktif.
+                            </p>
+                        </div>
+                        <span class="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                            <span>Game & Quiz</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+
+                    <!-- Event 4 -->
+                    <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl p-6 shadow-sm hover:shadow-lg transition-all space-y-4 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center font-bold text-lg mb-4">
+                                04
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Ulas Buku Dapat Buku (Shasiku)</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                                Tulis ulasan atau review singkat tentang buku yang telah selesai kamu baca di media sosial, dan raih kesempatan memenangkan buku gratis!
+                            </p>
+                        </div>
+                        <span class="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                            <span>Giveaway & Review</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- MINI GAME INTERAKTIF DI WEBSITE -->
+                <div class="mt-12 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 rounded-3xl p-6 sm:p-8 text-slate-950 shadow-xl">
+                    <div class="max-w-3xl mx-auto text-center space-y-4">
+                        <span class="bg-slate-950 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Mini Game Langsung</span>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold">Coba Tebak Kutipan Buku!</h3>
+                        <p class="text-sm sm:text-base font-medium opacity-90">
+                            Pilih jawaban yang menurut kamu benar dari kutipan bermakna di bawah ini:
+                        </p>
+                        
+                        <div id="quizContainer" class="bg-white dark:bg-zinc-900 text-slate-900 dark:text-white p-6 rounded-2xl shadow-lg space-y-4 text-left">
+                            <p id="quizQuestion" class="font-bold text-base sm:text-lg">
+                                "Siapa pun yang berjuang melawan luka tanpa kehilangan harapan, ia sedang menulis kisah keberaniannya sendiri."
+                            </p>
+                            <div id="quizOptions" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <button onclick="checkQuiz(0)" class="quiz-btn p-3 rounded-xl border border-slate-200 dark:border-zinc-700 hover:border-amber-500 hover:bg-amber-50 dark:hover:bg-zinc-800 transition font-medium text-sm text-left">
+                                    A. Memoari Berdamai dengan Luka (PABOBA)
+                                </button>
+                                <button onclick="checkQuiz(1)" class="quiz-btn p-3 rounded-xl border border-slate-200 dark:border-zinc-700 hover:border-amber-500 hover:bg-amber-50 dark:hover:bg-zinc-800 transition font-medium text-sm text-left">
+                                    B. Diktat Teori Ekonomi
+                                </button>
+                                <button onclick="checkQuiz(2)" class="quiz-btn p-3 rounded-xl border border-slate-200 dark:border-zinc-700 hover:border-amber-500 hover:bg-amber-50 dark:hover:bg-zinc-800 transition font-medium text-sm text-left">
+                                    C. Panduan Memasak Nusantara
+                                </button>
+                                <button onclick="checkQuiz(3)" class="quiz-btn p-3 rounded-xl border border-slate-200 dark:border-zinc-700 hover:border-amber-500 hover:bg-amber-50 dark:hover:bg-zinc-800 transition font-medium text-sm text-left">
+                                    D. Manual Kendaraan Bermotor
+                                </button>
+                            </div>
+                            <div id="quizFeedback" class="hidden p-3 rounded-xl font-bold text-sm text-center"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TITIK KUMPUL / THREAD LOCATIONS -->
+        <section id="titik-kumpul" class="py-16 md:py-24 bg-white/60 dark:bg-zinc-900/40 backdrop-blur-sm border-y border-amber-200/40 dark:border-zinc-800/60 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center space-y-3 mb-12">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-950/80 px-3.5 py-1.5 rounded-full">Jaringan Komunitas</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Lokasi & Titik Kumpul (Thread)</h2>
+                    <p class="text-slate-600 dark:text-slate-300 max-w-xl mx-auto text-sm sm:text-base">
+                        Suka meetup offline atau diskusi thread regional? Temukan teman sesama pembaca di kotamu!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Jakarta -->
+                    <div class="bg-amber-50/50 dark:bg-zinc-800/50 border border-amber-200/80 dark:border-zinc-700/60 rounded-3xl p-6 space-y-4 hover:border-amber-500 transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300">Thread #01</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Jakarta</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Rutinitas kumpul baca tenang di taman kota, perpustakaan publik, hingga kafe literasi seputaran Jakarta.
+                        </p>
+                        <a href="https://bit.ly/JoinC30HM" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline">
+                            <span>Gabung Thread Jakarta</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- Solo -->
+                    <div class="bg-amber-50/50 dark:bg-zinc-800/50 border border-amber-200/80 dark:border-zinc-700/60 rounded-3xl p-6 space-y-4 hover:border-amber-500 transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300">Thread #02</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Solo</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Diskusi gayeng dan bertukar pinjam buku fisik dengan suasana guyub hangat khas Kota Surakarta.
+                        </p>
+                        <a href="https://bit.ly/JoinC30HM" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline">
+                            <span>Gabung Thread Solo</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- Jogja -->
+                    <div class="bg-amber-50/50 dark:bg-zinc-800/50 border border-amber-200/80 dark:border-zinc-700/60 rounded-3xl p-6 space-y-4 hover:border-amber-500 transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300">Thread #03</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Jogja</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Wadah kumpul mahasiswa dan pecinta buku di Jogja, dari kawasan kedai kopi hingga sudut perpustakaan lokal.
+                        </p>
+                        <a href="https://bit.ly/JoinC30HM" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline">
+                            <span>Gabung Thread Jogja</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- Makassar -->
+                    <div class="bg-amber-50/50 dark:bg-zinc-800/50 border border-amber-200/80 dark:border-zinc-700/60 rounded-3xl p-6 space-y-4 hover:border-amber-500 transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300">Thread #04</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Makassar</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Semangat baca dari pesisir Sulawesi! Sesi baca buku dan bincang karya PABOBA bersama pegiat literasi Makassar.
+                        </p>
+                        <a href="https://bit.ly/JoinC30HM" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline">
+                            <span>Gabung Thread Makassar</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BUKU DAN KARYA PABOBA SECTION -->
+        <section id="karya" class="py-16 md:py-24 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center space-y-3 mb-12">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-950/80 px-3.5 py-1.5 rounded-full">Karya Terbitan PABOBA</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Buku & Karya dari Komunitas</h2>
+                    <p class="text-slate-600 dark:text-slate-300 max-w-xl mx-auto text-sm sm:text-base">
+                        Hasil kolaborasi tulisan indah dan memoar penuh rasa dari teman-teman anggota PABOBA. Kamu bisa memiliki bukunya langsung di Shopee!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Book 1 -->
+                    <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all flex flex-col">
+                        <div class="h-48 bg-gradient-to-tr from-amber-600 to-yellow-400 p-6 flex flex-col justify-end text-slate-950 relative">
+                            <span class="text-[10px] uppercase tracking-wider font-extrabold bg-slate-950 text-white px-2.5 py-1 rounded-md w-max mb-2">Antologi PABOBA</span>
+                            <h3 class="text-xl font-black leading-tight">Memoari Berdamai dengan Luka</h3>
+                            <p class="text-xs font-medium opacity-80 mt-1">Tim Nubar PABOBA</p>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Kumpulan kisah inspiratif tentang proses menerima rasa sakit, kekecewaan, dan bagaimana tulisan menjadi obat penyembuh yang menenangkan jiwa.
+                            </p>
+                            <a href="https://shopee.co.id/Memoari-Berdamai-dengan-Luka-Tim-Nubar-Paboba-i.102676236.28241249318?extraParams=%7B%22display_model_id%22%3A301481170340%2C%22model_selection_logic%22%3A3%7D" target="_blank" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 px-4 rounded-2xl text-xs text-center flex items-center justify-center gap-2 shadow-md transition">
+                                <span>Beli Buku di Shopee</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Book 2 -->
+                    <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all flex flex-col">
+                        <div class="h-48 bg-gradient-to-tr from-amber-700 via-amber-500 to-yellow-300 p-6 flex flex-col justify-end text-slate-950 relative">
+                            <span class="text-[10px] uppercase tracking-wider font-extrabold bg-slate-950 text-white px-2.5 py-1 rounded-md w-max mb-2">PABOBA Batch 3</span>
+                            <h3 class="text-xl font-black leading-tight">Berdamai dengan Ekspektasi</h3>
+                            <p class="text-xs font-medium opacity-80 mt-1">Antologi PABOBA</p>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Refleksi jujur mengenai standar hidup, tekanan sosial, dan Seni merangkul realita tanpa perlu membenci diri sendiri.
+                            </p>
+                            <a href="https://shopee.co.id/MEMOARI-BEDAMAI-DENGAN-EKSPETASI-ANTOLOGI-PABOBA-BATCH-3-i.102676236.40484756180?extraParams=%7B%22display_model_id%22%3A331543533265%2C%22model_selection_logic%22%3A3%7D" target="_blank" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 px-4 rounded-2xl text-xs text-center flex items-center justify-center gap-2 shadow-md transition">
+                                <span>Beli Buku di Shopee</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Book 3 -->
+                    <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all flex flex-col">
+                        <div class="h-48 bg-gradient-to-tr from-amber-600 via-yellow-500 to-amber-200 p-6 flex flex-col justify-end text-slate-950 relative">
+                            <span class="text-[10px] uppercase tracking-wider font-extrabold bg-slate-950 text-white px-2.5 py-1 rounded-md w-max mb-2">Special Edition</span>
+                            <h3 class="text-xl font-black leading-tight">Pages of Journeys</h3>
+                            <p class="text-xs font-medium opacity-80 mt-1">NPC Mission Team</p>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Catatan perjalanan seru para pejuang literasi dalam menuntaskan misi harian membaca dan membagikan percikan inspirasi.
+                            </p>
+                            <a href="https://shopee.co.id/Pages-of-Journeys-NPC-Mission-Team-i.102676236.49567879549?extraParams=%7B%22display_model_id%22%3A341512028295%2C%22model_selection_logic%22%3A3%7D" target="_blank" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 px-4 rounded-2xl text-xs text-center flex items-center justify-center gap-2 shadow-md transition">
+                                <span>Beli Buku di Shopee</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STRUKTUR DIVISI & PENANGGUNG JAWAB -->
+        <section id="divisi" class="py-16 md:py-24 bg-white/60 dark:bg-zinc-900/40 backdrop-blur-sm border-y border-amber-200/40 dark:border-zinc-800/60 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center space-y-3 mb-12">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-950/80 px-3.5 py-1.5 rounded-full">Struktur Organisasi</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Divisi & Penanggung Jawab</h2>
+                    <p class="text-slate-600 dark:text-slate-300 max-w-xl mx-auto text-sm sm:text-base">
+                        Orang-orang baik di balik layar yang menjaga roda komunitas ini tetap berputar dan makin seru tiap harinya.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Divisi Acara -->
+                    <div class="p-6 rounded-3xl bg-amber-50/70 dark:bg-zinc-800/60 border border-amber-200/60 dark:border-zinc-700/60 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-bold flex items-center justify-center text-sm">
+                            01
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Divisi Program & Event</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">PJ: Tim Program Lentera & Shasiku</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Bertanggung jawab merancang sesi Diskusi Lentera, jadwal Mini Games, hingga tantangan Ulas Buku Dapat Buku.
+                        </p>
+                    </div>
+
+                    <!-- Divisi Redaksi -->
+                    <div class="p-6 rounded-3xl bg-amber-50/70 dark:bg-zinc-800/60 border border-amber-200/60 dark:border-zinc-700/60 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-bold flex items-center justify-center text-sm">
+                            02
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Divisi Redaksi & Zine</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">PJ: Tim Editor PABOBA</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Mengkuras tulisan harian, mengedit Digital Zine bulanan, dan mendampingi penyusunan buku antologi.
+                        </p>
+                    </div>
+
+                    <!-- Divisi Humas & Medsos -->
+                    <div class="p-6 rounded-3xl bg-amber-50/70 dark:bg-zinc-800/60 border border-amber-200/60 dark:border-zinc-700/60 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-bold flex items-center justify-center text-sm">
+                            03
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Divisi Humas & Sosial Media</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">PJ: Tim Media @30harimembaca</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Mengelola interaksi Instagram, TikTok, serta menyebarkan inspirasi baca harian kepada khalayak luas.
+                        </p>
+                    </div>
+
+                    <!-- Divisi Regional -->
+                    <div class="p-6 rounded-3xl bg-amber-50/70 dark:bg-zinc-800/60 border border-amber-200/60 dark:border-zinc-700/60 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-bold flex items-center justify-center text-sm">
+                            04
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Divisi Korwil Titik Kumpul</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">PJ: Koordinator Jakarta, Solo, Jogja, Makassar</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Menjaga kehangatan diskusi di thread regional dan mengorganisir temu darat/offline meetup.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DIGITAL ZINE & OPINI THREAD -->
+        <section id="zine" class="py-16 md:py-24 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center space-y-3 mb-12">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-950/80 px-3.5 py-1.5 rounded-full">Koleksi Digital</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Digital Zine & Opini Member</h2>
+                    <p class="text-slate-600 dark:text-slate-300 max-w-xl mx-auto text-sm sm:text-base">
+                        Rangkuman karya visual, esai pendek, dan sorotan diskusi thread pilihan hasil buah pikir para anggota.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Zine Item 1 -->
+                    <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl p-6 space-y-4 hover:border-amber-400 transition">
+                        <div class="flex items-center justify-between text-xs font-semibold text-amber-600 dark:text-amber-400">
+                            <span>Zine Edisi #08</span>
+                            <span>Maret 2026</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Menemukan Tenang di Antara Baris Kalimat</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Ulasan jujur dari 12 member tentang bagaimana membaca 15 menit sebelum tidur mampu meredakan rasa cemas harian.
+                        </p>
+                        <button onclick="alert('Zine Edisi #08 siap diunduh di grup WhatsApp member!')" class="w-full bg-slate-100 dark:bg-zinc-800 hover:bg-amber-100 dark:hover:bg-zinc-700 text-slate-800 dark:text-slate-200 py-2.5 rounded-xl text-xs font-bold transition">
+                            Baca Digital Zine
+                        </button>
+                    </div>
+
+                    <!-- Zine Item 2 -->
+                    <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl p-6 space-y-4 hover:border-amber-400 transition">
+                        <div class="flex items-center justify-between text-xs font-semibold text-amber-600 dark:text-amber-400">
+                            <span>Zine Edisi #07</span>
+                            <span>Januari 2026</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Ekspektasi vs Realita Membaca Konsisten</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Kompilasi thread populer mengenai trik keluar dari reading slump dan memilih buku yang pas sesuai suasana hati.
+                        </p>
+                        <button onclick="alert('Zine Edisi #07 siap diunduh di grup WhatsApp member!')" class="w-full bg-slate-100 dark:bg-zinc-800 hover:bg-amber-100 dark:hover:bg-zinc-700 text-slate-800 dark:text-slate-200 py-2.5 rounded-xl text-xs font-bold transition">
+                            Baca Digital Zine
+                        </button>
+                    </div>
+
+                    <!-- Zine Item 3 -->
+                    <div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl p-6 space-y-4 hover:border-amber-400 transition">
+                        <div class="flex items-center justify-between text-xs font-semibold text-amber-600 dark:text-amber-400">
+                            <span>Thread Highlight</span>
+                            <span>Diskusi Diskusi Lentera</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Mengapa Menulis Berdua Lebih Menyenangkan?</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Catatan curhat para penulis buku PABOBA sewaktu proses pengerjaan buku antologi *Berdamai dengan Luka*.
+                        </p>
+                        <button onclick="alert('Rangkuman Thread siap dibaca di media sosial @30harimembaca!')" class="w-full bg-slate-100 dark:bg-zinc-800 hover:bg-amber-100 dark:hover:bg-zinc-700 text-slate-800 dark:text-slate-200 py-2.5 rounded-xl text-xs font-bold transition">
+                            Baca Rangkuman Thread
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONI MEMBER -->
+        <section class="py-16 md:py-24 bg-amber-50/80 dark:bg-zinc-900/60 border-y border-amber-200/50 dark:border-zinc-800/80 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center space-y-3 mb-12">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-950/80 px-3.5 py-1.5 rounded-full">Suara Anggota</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Kata Teman-Teman Membaca</h2>
+                    <p class="text-slate-600 dark:text-slate-300 max-w-xl mx-auto text-sm sm:text-base">
+                        Pengalaman hangat yang dirasakan teman-teman setelah bergabung dengan lingkungan komunitas ini.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-zinc-800 border border-amber-100 dark:border-zinc-700 rounded-3xl p-6 space-y-4 shadow-sm">
+                        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 italic leading-relaxed">
+                            "Awalnya ragu bisa konsisten baca buku. Tapi pas gabung @30harimembaca, suasananya seru banget dan gak ada yang saling menghakimi. Akhirnya berhasil namatin 3 buku dalam sebulan!"
+                        </p>
+                        <div class="pt-2 flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-full bg-amber-200 dark:bg-amber-900 flex items-center justify-center font-bold text-xs text-amber-900 dark:text-amber-200">
+                                AR
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-900 dark:text-white">Annisa R.</h4>
+                                <p class="text-[10px] text-slate-500 dark:text-slate-400">Member Thread Jakarta</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-zinc-800 border border-amber-100 dark:border-zinc-700 rounded-3xl p-6 space-y-4 shadow-sm">
+                        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 italic leading-relaxed">
+                            "Pengalaman nulis di PABOBA itu luar biasa. Buku *Berdamai dengan Luka* jadi jejak fisik pertamaku. Makasih banget tim 30 Hari Membaca sudah mewujudkan impian ini."
+                        </p>
+                        <div class="pt-2 flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-full bg-amber-200 dark:bg-amber-900 flex items-center justify-center font-bold text-xs text-amber-900 dark:text-amber-200">
+                                BP
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-900 dark:text-white">Bagas P.</h4>
+                                <p class="text-[10px] text-slate-500 dark:text-slate-400">Penulis Antologi PABOBA</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-zinc-800 border border-amber-100 dark:border-zinc-700 rounded-3xl p-6 space-y-4 shadow-sm">
+                        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 italic leading-relaxed">
+                            "Diskusi Lentera dan event Shasiku selalu ditunggu-tunggu! Selain nambah wawasan, temen-temennya ramah dan saling bantu pas lagi ngalamin reading slump."
+                        </p>
+                        <div class="pt-2 flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-full bg-amber-200 dark:bg-amber-900 flex items-center justify-center font-bold text-xs text-amber-900 dark:text-amber-200">
+                                DF
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-900 dark:text-white">Dian F.</h4>
+                                <p class="text-[10px] text-slate-500 dark:text-slate-400">Member Thread Jogja</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOTTOM JOIN CTA BANNER -->
+        <section class="py-16 md:py-20 fade-in-section">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 rounded-3xl p-8 md:p-12 text-slate-950 text-center space-y-6 shadow-2xl relative overflow-hidden">
+                    <div class="relative z-10 space-y-4">
+                        <h2 class="text-3xl sm:text-4xl font-black tracking-tight">
+                            Sudah Siap Membuka Halaman Pertama?
+                        </h2>
+                        <p class="text-base sm:text-lg font-medium max-w-xl mx-auto opacity-95">
+                            Tidak perlu menunggu waktu luang, cukup luangkan waktu. Yuk bergabung dengan ribuan teman membaca lainnya sekarang juga!
+                        </p>
+                        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <a href="https://bit.ly/JoinC30HM" target="_blank" class="w-full sm:w-auto bg-slate-950 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-2xl shadow-xl transition-all flex items-center justify-center gap-3 text-base">
+                                <span>Daftar Sekarang (Gratis)</span>
+                                <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL PREVIEW BOOKLET -->
+    <div id="bookletModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+        <div class="bg-white dark:bg-zinc-900 border border-amber-200 dark:border-zinc-800 rounded-3xl p-6 md:p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button id="closeBookletBtn" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-zinc-800 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div class="space-y-6">
+                <div class="flex items-center gap-3 border-b border-slate-100 dark:border-zinc-800 pb-4">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-black flex items-center justify-center">
+                        30
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Booklet Panduan @30harimembaca</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Panduan Lengkap Kegiatan & Aturan Main Komunitas</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <div class="p-4 bg-amber-50 dark:bg-zinc-800/60 rounded-2xl border border-amber-100 dark:border-zinc-700 space-y-2">
+                        <h4 class="font-bold text-slate-900 dark:text-white text-base">1. Tantangan Harian 30 Hari</h4>
+                        <p class="text-xs">Setiap anggota diajak mencatat atau membagikan bahan bacaannya secara fleksibel tanpa paksaan minimal lembaran.</p>
+                    </div>
+
+                    <div class="p-4 bg-amber-50 dark:bg-zinc-800/60 rounded-2xl border border-amber-100 dark:border-zinc-700 space-y-2">
+                        <h4 class="font-bold text-slate-900 dark:text-white text-base">2. Alur Menulis PABOBA</h4>
+                        <p class="text-xs">Bagi anggota yang berminat menerbitkan buku antologi, registrasi gelombang PABOBA dibuka tiap beberapa bulan sekali dengan pendampingan kurator naskah.</p>
+                    </div>
+
+                    <div class="p-4 bg-amber-50 dark:bg-zinc-800/60 rounded-2xl border border-amber-100 dark:border-zinc-700 space-y-2">
+                        <h4 class="font-bold text-slate-900 dark:text-white text-base">3. Etika Diskusi & Thread</h4>
+                        <p class="text-xs">Saling menghargai preferensi genre buku (fiksi, non-fiksi, komik, sains, pengembangan diri) dan menjaga kehangatan obrolan.</p>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-slate-100 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <a href="https://bit.ly/JoinC30HM" target="_blank" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 px-6 rounded-2xl text-xs text-center">
+                        Gabung Komunitas Sekarang
+                    </a>
+                    <button id="closeBookletSecondary" class="w-full sm:w-auto bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-slate-200 py-3 px-6 rounded-2xl text-xs font-bold">
+                        Tutup Booklet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-zinc-950 border-t border-amber-200/60 dark:border-zinc-800 py-12 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                
+                <!-- Brand Info -->
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center text-slate-950 font-black text-xl shadow-md">
+                        30
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-slate-900 dark:text-white tracking-tight text-lg">30 Hari Membaca</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Ruang hangat tumbuh bersama buku.</p>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex items-center gap-4">
+                    <!-- Instagram Link -->
+                    <a href="https://instagram.com/30harimembaca" target="_blank" aria-label="Instagram 30 Hari Membaca" class="p-3 rounded-2xl bg-amber-50 dark:bg-zinc-800 hover:bg-amber-100 dark:hover:bg-zinc-700 text-amber-900 dark:text-amber-300 transition flex items-center gap-2 text-xs font-bold">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        <span>Instagram @30harimembaca</span>
+                    </a>
+
+                    <!-- TikTok Link -->
+                    <a href="https://tiktok.com/@30harimembaca" target="_blank" aria-label="TikTok 30 Hari Membaca" class="p-3 rounded-2xl bg-amber-50 dark:bg-zinc-800 hover:bg-amber-100 dark:hover:bg-zinc-700 text-amber-900 dark:text-amber-300 transition flex items-center gap-2 text-xs font-bold">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.57-1.31 1.55-1.33 2.55-.01.8.31 1.59.89 2.12.72.63 1.73.83 2.65.6 1.02-.23 1.88-.98 2.22-1.96.16-.48.23-.99.22-1.5.03-4.52.01-9.04.01-13.56z"/></svg>
+                        <span>TikTok @30harimembaca</span>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="pt-6 border-t border-slate-100 dark:border-zinc-800 text-center text-xs text-slate-500 dark:text-slate-400">
+                <p>&copy; 2026 Komunitas @30harimembaca. Dibuat dengan cinta untuk seluruh pecinta buku di Indonesia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle Logic
+        const html = document.documentElement;
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+
+        function updateTheme(isDark) {
+            if (isDark) {
+                html.classList.add('dark');
+                html.classList.remove('light');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            } else {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const isDark = !html.classList.contains('dark');
+            updateTheme(isDark);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Modals Logic
+        const welcomeModal = document.getElementById('welcomeModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const exploreBtn = document.getElementById('exploreBtn');
+
+        const bookletModal = document.getElementById('bookletModal');
+        const openBookletBtn = document.getElementById('openBookletBtn');
+        const closeBookletBtn = document.getElementById('closeBookletBtn');
+        const closeBookletSecondary = document.getElementById('closeBookletSecondary');
+
+        function hideModal(modal) {
+            modal.classList.add('hidden');
+        }
+
+        function showModal(modal) {
+            modal.classList.remove('hidden');
+        }
+
+        closeModalBtn.addEventListener('click', () => hideModal(welcomeModal));
+        exploreBtn.addEventListener('click', () => hideModal(welcomeModal));
+
+        openBookletBtn.addEventListener('click', () => showModal(bookletModal));
+        closeBookletBtn.addEventListener('click', () => hideModal(bookletModal));
+        closeBookletSecondary.addEventListener('click', () => hideModal(bookletModal));
+
+        // Quiz / Mini Game Logic
+        function checkQuiz(index) {
+            const feedback = document.getElementById('quizFeedback');
+            feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'bg-rose-100', 'text-rose-900');
+            
+            if (index === 0) {
+                feedback.classList.add('bg-emerald-100', 'text-emerald-900');
+                feedback.innerHTML = 'Tepat Sekali! Kutipan ini merupakan salah satu penggalan indah dari buku <strong>Memoari Berdamai dengan Luka</strong> karya PABOBA.';
+            } else {
+                feedback.classList.add('bg-rose-100', 'text-rose-900');
+                feedback.innerHTML = 'Hampir benar! Jawaban yang tepat adalah <strong>A. Memoari Berdamai dengan Luka (PABOBA)</strong>.';
+            }
+        }
+
+        // Scroll Reveal Animation (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedSections = document.querySelectorAll('.fade-in-section');
+            animatedSections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+</html>
